@@ -1,5 +1,6 @@
 package com.ganeshi.savestatus.views.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private val activity = this
     private val binding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
-
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             val fragmentWhatsappStatus = FragmentSaveStatus()
             val bundle = Bundle()
-            bundle.putString(Constant.FRAGMENT_TYPE_KEY , Constant.TYPE_WHATSAPP_MAIN)
+//            bundle.putString(Constant.FRAGMENT_TYPE_KEY , Constant.TYPE_WHATSAPP_BUSINESS)
             replaceFragment(fragmentWhatsappStatus , bundle)
             bottomNavigationView.setOnItemSelectedListener {
                 when(it.itemId){
@@ -43,6 +43,13 @@ class MainActivity : AppCompatActivity() {
               true
             }
         }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        fragment?.onActivityResult(requestCode , resultCode , data)
     }
 }
 

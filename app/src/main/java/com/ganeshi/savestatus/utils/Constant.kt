@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Build
 
 object Constant {
+
     const val TYPE_WHATSAPP_MAIN = "com.whatsapp"
     const val TYPE_WHATSAPP_BUSINESS = "com.whatsapp.w4b"
 
@@ -20,15 +21,13 @@ object Constant {
 
     //url
     val WHATSAPP_PATH_URI_ANDROID =
-        Uri.parse("content://com.android.externalstorage.document/document.primary%3AWhatsApp%2FMedia%2F.Status")
+        Uri.parse("content://com.android.externalstorage.document/document.primary%3AWhatsApp%2FMedia%2F.Statuses")
     val WHATSAPP_PATH_URI_AVDROID_11 =
-        Uri.parse("content://com.android.externalstorage.document/document.primary%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Status")
+        Uri.parse("content://com.android.externalstorage.document/document.primary%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
     val WHATSAPP_BUSINESS_PATH_URI_ANDROID =
-        Uri.parse("content://com.android.externalstorage.document/document.primary%3AWhatsApp%20Business%2FMedia%2.Status")
+        Uri.parse("content://com.android.externalstorage.document/document.primary%3AWhatsApp%20Business%2FMedia%2F.Statuses")
     val WHATSAPP_BUSINESS_PATH_ANDROID_11 =
-        Uri.parse("content://com.android.externalstorage.document/document.primary%3AAndroid%2Fmedia%2Fcom.whatsapp.w4b%2FWhatsApp%20business%2FMedia%2F.Status")
-
-
+        Uri.parse("content://com.android.externalstorage.document/document.primary%3AAndroid%2Fmedia%2Fcom.whatsapp.w4b%2FWhatsApp%20Business%2FMedia%2F.Statuses")
     fun getWhatsappUri() :Uri{
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             WHATSAPP_PATH_URI_AVDROID_11
@@ -37,8 +36,6 @@ object Constant {
             WHATSAPP_PATH_URI_ANDROID
         }
     }
-
-
     fun getWhatsappBusinessUri(): Uri{
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
             WHATSAPP_BUSINESS_PATH_ANDROID_11
