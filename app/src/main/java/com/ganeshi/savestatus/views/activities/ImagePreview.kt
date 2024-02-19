@@ -22,7 +22,7 @@ class ImagePreview : AppCompatActivity() {
             insets
         }
         binding.apply {
-
+print("hhhhh")
         }
     }
 }
