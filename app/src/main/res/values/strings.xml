@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Save Status</string>
+    <string name="imageButton">IMAGES</string>
+    <string name="videosButton">VIDEOS</string>
+    <string name="saveButton">SAVED</string>
+    <string name="qr">qrcode</string>
+    <string name="whatsapp">whatsapp</string>
+    <string name="headline">headline</string>
+    <string name="save_status">Save Status</string>
+    <string name="message_recovery">Message Recovery</string>
+    <string name="hello_message_fragment">Hello Message Recovery Fragment</string>
+    <string name="share">Share</string>
+    <string name="download">Download</string>
+    <string name="repost">Repost</string>
+    <string name="allow_permission">Allow Permission</string>
+    <string name="please_allow_permission_for_status">Please allow Permission For Status</string>
+
+</resources>
