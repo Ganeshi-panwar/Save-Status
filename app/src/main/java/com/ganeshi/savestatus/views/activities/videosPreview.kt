@@ -24,6 +24,7 @@ class VideosPreview : AppCompatActivity() {
 
         binding.apply {
 
+
         }
     }
 }

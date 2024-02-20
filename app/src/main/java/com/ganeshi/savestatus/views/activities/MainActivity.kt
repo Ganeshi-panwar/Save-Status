@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.ganeshi.savestatus.R
 import com.ganeshi.savestatus.databinding.ActivityMainBinding
-import com.ganeshi.savestatus.utils.Constant
+import com.ganeshi.savestatus.utils.Constants
 import com.ganeshi.savestatus.utils.SharedPrefUtils
 import com.ganeshi.savestatus.utils.replaceFragment
 import com.ganeshi.savestatus.views.fragments.FragmentMessageRecovery
@@ -26,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             val fragmentWhatsappStatus = FragmentSaveStatus()
             val bundle = Bundle()
-//            bundle.putString(Constant.FRAGMENT_TYPE_KEY , Constant.TYPE_WHATSAPP_BUSINESS)
+            bundle.putString(Constants.FRAGMENT_TYPE_KEY , Constants.TYPE_WHATSAPP_BUSINESS)
             replaceFragment(fragmentWhatsappStatus , bundle)
             bottomNavigationView.setOnItemSelectedListener {
                 when(it.itemId){
                     R.id.saveStatus ->{
                         val fragmentWhatsAppStatus = FragmentSaveStatus()
                         val bundle = Bundle()
-                            bundle.putString(Constant.FRAGMENT_TYPE_KEY , Constant.TYPE_WHATSAPP_MAIN)
+                            bundle.putString(Constants.FRAGMENT_TYPE_KEY , Constants.TYPE_WHATSAPP_BUSINESS)
                         replaceFragment(fragmentWhatsAppStatus , bundle)
                     }
                     R.id.messageRecovery->{
