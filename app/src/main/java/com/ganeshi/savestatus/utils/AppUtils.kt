@@ -18,5 +18,9 @@ fun Activity.replaceFragment(fragment:Fragment, args:Bundle? = null){
         replace(R.id.fragment_container, fragment)
         addToBackStack(null)
     }.commit()
+}
+
+fun Activity.replaceFragment(fragment: Fragment, args:Bundle? = null){
+    val fragmentActivity = this as FragmentActivity
 
 }
