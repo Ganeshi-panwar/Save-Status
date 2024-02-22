@@ -1,6 +1,6 @@
 package com.ganeshi.savestatus.models
 const val MEDIA_TYPE_IMAGE = "image"
-const val MEDIA_TYPE_VIDEO = "image"
+const val MEDIA_TYPE_VIDEO = "video"
 data class MediaModel(
     val pathUri:String ,
     val fileName:String ,

@@ -46,9 +46,7 @@ class MediaAdapter(private val list:ArrayList<MediaModel>, val context:Context):
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemMediaBinding.inflate(LayoutInflater.from(context), parent , false))
     }
-
     override fun getItemCount() = list.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
         holder.bind(model)

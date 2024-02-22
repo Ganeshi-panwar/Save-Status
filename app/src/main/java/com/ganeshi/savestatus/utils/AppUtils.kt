@@ -20,7 +20,3 @@ fun Activity.replaceFragment(fragment:Fragment, args:Bundle? = null){
     }.commit()
 }
 
-fun Activity.replaceFragment(fragment: Fragment, args:Bundle? = null){
-    val fragmentActivity = this as FragmentActivity
-
-}
