@@ -1,4 +1,4 @@
-package com.ganeshi.savestatus.viewmodels.factories
+package com.ganeshi.savestatus.viewmodels
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -29,10 +29,14 @@ class StatusViewModel(private val repo: StatusRepo):ViewModel() {
         if (isPermissionGranted){
             CoroutineScope(Dispatchers.IO).launch {
                 repo.getAllStatuses(Constants.TYPE_WHATSAPP_BUSINESS)
+                withContext(Dispatchers.Main){
+                    getWhatsAppBusinessImage()
+                    getWhatsAppBusinessVideo()
+                }
             }
         }
     }
-    fun  getWhatsAppStatus(){
+    fun  getWhatsAppBusinessStatus(){
         CoroutineScope(Dispatchers.IO).launch {
             if (!isPermissionGranted){
                 repo.getAllStatuses()

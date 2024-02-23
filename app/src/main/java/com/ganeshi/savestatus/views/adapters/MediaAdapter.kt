@@ -28,7 +28,6 @@ class MediaAdapter(private val list:ArrayList<MediaModel>, val context:Context):
                     R.drawable.ic_download
                 }
                 statusDownload.setImageResource(downloadedImage)
-
                 cardStatus.setOnClickListener{
                     if(mediaModel.type == MEDIA_TYPE_IMAGE){
                         // goto image preview activity

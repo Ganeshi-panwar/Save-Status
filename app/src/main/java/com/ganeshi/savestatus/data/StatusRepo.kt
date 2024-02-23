@@ -22,7 +22,7 @@ class StatusRepo(val context:Context) {
 
     val activity = context as Activity
     private val wpStatusList = ArrayList<MediaModel>()
-    private val wpBusinessStatus = ArrayList<MediaModel>()
+    private val wpBusinessStatusList = ArrayList<MediaModel>()
 
     fun getAllStatuses(whatsAppType:String = Constants.TYPE_WHATSAPP_BUSINESS ){
         val treeUri = when(whatsAppType){
@@ -30,8 +30,9 @@ class StatusRepo(val context:Context) {
                 SharedPrefUtils.getPrefString(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_BUSINESS_TREE_URI, "")?.toUri()!!
             }
             else->{
-                SharedPrefUtils.getPrefString(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_TREE_URI, "")?.toUri()!!
-            }
+                SharedPrefUtils.getPrefString(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_BUSINESS_TREE_URI, "")?.toUri()!!
+//                SharedPrefUtils.getPrefString(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_TREE_URI, "")?.toUri()!!
+           }
         }
         activity.contentResolver.takePersistableUriPermission(
             treeUri , Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -56,11 +57,11 @@ class StatusRepo(val context:Context) {
                     )
                     when(whatsAppType){
                         Constants.TYPE_WHATSAPP_BUSINESS ->{
-                            wpBusinessStatus.add(model)
+                            wpBusinessStatusList.add(model)
                         }
-                        else ->{
-                            wpStatusList.add(model)
-                        }
+//                        else ->{
+//                            wpStatusList.add(model)
+//                        }
                     }
 
                 }
@@ -68,11 +69,11 @@ class StatusRepo(val context:Context) {
 
             when(whatsAppType){
                 Constants.TYPE_WHATSAPP_BUSINESS ->{
-                    whatsAppBusinessStatusesLiveData.postValue(wpBusinessStatus)
+                    whatsAppBusinessStatusesLiveData.postValue(wpBusinessStatusList)
                 }
-                else ->{
-                    whatsAppStatusesLiveData.postValue(wpStatusList)
-                }
+//                else ->{
+//                    whatsAppStatusesLiveData.postValue(wpStatusList)
+//                }
             }
         }
 

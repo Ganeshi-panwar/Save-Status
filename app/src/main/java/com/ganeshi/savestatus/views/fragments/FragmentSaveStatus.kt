@@ -1,19 +1,21 @@
 package com.ganeshi.savestatus.views.fragments
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.ganeshi.savestatus.data.StatusRepo
 import com.ganeshi.savestatus.databinding.FragmentFragmenetSaveStatusBinding
 import com.ganeshi.savestatus.utils.Constants
 import com.ganeshi.savestatus.utils.SharedPrefUtils
 
 import com.ganeshi.savestatus.utils.getFolderPermissions
+import com.ganeshi.savestatus.viewmodels.StatusViewModel
+import com.ganeshi.savestatus.viewmodels.factories.StatusViewModelFactory
 import com.ganeshi.savestatus.views.adapters.MediaViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -26,11 +28,15 @@ class FragmentSaveStatus : Fragment() {
     private val WHATSAPP_REQUEST_CODE = 102
     private val WHATSAPP_BUSINEES_REQUEST_CODE = 101
     private val viewPagerTitle = arrayListOf("Images" , "Videos")
+    lateinit var  viewModel: StatusViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.apply {
             arguments?.let {
+                val repo = StatusRepo(requireActivity())
+                viewModel = ViewModelProvider(requireActivity() , StatusViewModelFactory(repo))[StatusViewModel::class.java]
                 type = it.getString(
                     Constants.FRAGMENT_TYPE_KEY, ""
                 )
@@ -82,6 +88,7 @@ class FragmentSaveStatus : Fragment() {
 
     fun getWhatsAppBusinessStatus() {
         binding.permissionLayoutHolder.visibility = View.GONE
+        viewModel.getWhatsAppBusinessStatus()
 
     }
 
