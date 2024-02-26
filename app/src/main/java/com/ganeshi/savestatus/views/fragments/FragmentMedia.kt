@@ -18,8 +18,8 @@ class FragmentMedia : Fragment() {
     private val binding by lazy {
         FragmentMediaBinding.inflate(layoutInflater)
     }
-lateinit var viewModel: StatusViewModel
-lateinit var adapter: MediaAdapter
+private lateinit var viewModel: StatusViewModel
+private lateinit var adapter: MediaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +56,10 @@ lateinit var adapter: MediaAdapter
                             val list = ArrayList<MediaModel>()
                             filterList.forEach { model ->
                                 list.add(model)
+                                Log.d("list" , model.toString())
                             }
                             adapter = MediaAdapter(list, requireActivity())
-                            Log.d("afg" , adapter.toString())
+                            Log.d("whatsappData" , adapter.toString())
                             mediaRecyclerView.adapter = adapter
                         }
                     }

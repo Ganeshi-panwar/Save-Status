@@ -14,7 +14,7 @@ fun Context.isStatusExit(fileName:String):Boolean{
 fun getFileExtension(fileName:String):String{
     val lastDotIndex = fileName.lastIndexOf(".")
     if (lastDotIndex > 0 && lastDotIndex <fileName.length -1){
-        return  fileName.substring(lastDotIndex-1)
+        return  fileName.substring(lastDotIndex +1)
     }
     return ""
 }

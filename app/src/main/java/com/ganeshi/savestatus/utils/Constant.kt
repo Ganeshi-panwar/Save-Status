@@ -6,6 +6,7 @@ import android.os.Build
 
 object Constants {
 
+
     const val TYPE_WHATSAPP_MAIN = "com.whatsapp"
     const val TYPE_WHATSAPP_BUSINESS = "com.whatsapp.w4b"
 
@@ -27,17 +28,19 @@ object Constants {
         Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
 
     val WHATSAPP_BUSINESS_PATH_URI_ANDROID =
-        Uri.parse("content://com.android.externalstorage.documents/document/primary%3AWhatsApp%20Business%2FMedia%2F.Statuses")
+        Uri.parse(
+            "content://com.android.externalstorage.documents/document/primary%3AWhatsApp%20Business%2FMedia%2F.Statuses")
     val WHATSAPP_BUSINESS_PATH_URI_ANDROID_11 =
         Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fmedia%2Fcom.whatsapp.w4b%2FWhatsApp%20Business%2FMedia%2F.Statuses")
 
-    fun getWhatsappUri(): Uri {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            WHATSAPP_PATH_URI_ANDROID_11
-        } else {
-            WHATSAPP_PATH_URI_ANDROID
-        }
-    }
+//    fun getWhatsappUri(): Uri {
+//        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            WHATSAPP_PATH_URI_ANDROID_11
+//        } else {
+//            WHATSAPP_PATH_URI_ANDROID
+//        }
+//    }
+
     fun getWhatsappBusinessUri(): Uri {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             WHATSAPP_BUSINESS_PATH_URI_ANDROID_11
@@ -45,5 +48,4 @@ object Constants {
             WHATSAPP_BUSINESS_PATH_URI_ANDROID
         }
     }
-
 }

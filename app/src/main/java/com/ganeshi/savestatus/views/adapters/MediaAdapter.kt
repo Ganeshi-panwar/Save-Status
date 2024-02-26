@@ -3,6 +3,7 @@ package com.ganeshi.savestatus.views.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ganeshi.savestatus.R
@@ -20,7 +21,7 @@ class MediaAdapter(private val list:ArrayList<MediaModel>, val context:Context):
         fun bind(mediaModel: MediaModel) {
             binding.apply {
                 Glide.with(context)
-                    .load(mediaModel.pathUri)
+                    .load(mediaModel.pathUri.toUri())
                     .into(statusImage)
                 val downloadedImage = if (mediaModel.isDownloaded){
                     R.drawable.ic_downloaded

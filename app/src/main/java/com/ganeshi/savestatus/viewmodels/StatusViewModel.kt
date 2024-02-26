@@ -24,7 +24,8 @@ class StatusViewModel(private val repo: StatusRepo):ViewModel() {
 
     init {
         SharedPrefUtils.init(repo.context)
-        val wpBusinessPermission = SharedPrefUtils.getPrefBoolean(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_BUSINESS_PERMISSION_GRANTED , false)
+        val wpBusinessPermission = SharedPrefUtils.getPrefBoolean(SharedPrefUtils.
+        SharedPrefKeys.PREF_KEY_WP_BUSINESS_PERMISSION_GRANTED , false)
         isPermissionGranted = wpBusinessPermission
         if (isPermissionGranted){
             CoroutineScope(Dispatchers.IO).launch {
@@ -49,7 +50,7 @@ class StatusViewModel(private val repo: StatusRepo):ViewModel() {
         }
     }
 
-    fun getWhatsAppBusinessImage(){
+    private fun getWhatsAppBusinessImage(){
        wpBusinessStatusLiveData.observe(repo.activity as LifecycleOwner){
             val tempList = ArrayList<MediaModel>()
             it.forEach{mediaModel ->
@@ -62,7 +63,7 @@ class StatusViewModel(private val repo: StatusRepo):ViewModel() {
 
     }
 
-    fun  getWhatsAppBusinessVideo(){
+   private fun  getWhatsAppBusinessVideo(){
         wpBusinessStatusLiveData.observe(repo.activity as LifecycleOwner){
             val tempList = ArrayList<MediaModel>()
             it.forEach{mediaModel ->

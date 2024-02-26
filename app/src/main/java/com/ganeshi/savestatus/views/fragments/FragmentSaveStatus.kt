@@ -2,6 +2,7 @@ package com.ganeshi.savestatus.views.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,10 +26,9 @@ class FragmentSaveStatus : Fragment() {
         FragmentFragmenetSaveStatusBinding.inflate(layoutInflater)
     }
     private lateinit var type: String
-    private val WHATSAPP_REQUEST_CODE = 102
     private val WHATSAPP_BUSINEES_REQUEST_CODE = 101
     private val viewPagerTitle = arrayListOf("Images" , "Videos")
-    lateinit var  viewModel: StatusViewModel
+    private lateinit var  viewModel: StatusViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,9 @@ class FragmentSaveStatus : Fragment() {
         binding.apply {
             arguments?.let {
                 val repo = StatusRepo(requireActivity())
-                viewModel = ViewModelProvider(requireActivity() , StatusViewModelFactory(repo))[StatusViewModel::class.java]
+                Log.d("repo" , repo.toString())
+                viewModel = ViewModelProvider(requireActivity(),
+                    StatusViewModelFactory(repo))[StatusViewModel::class.java]
                 type = it.getString(
                     Constants.FRAGMENT_TYPE_KEY, ""
                 )
@@ -47,7 +49,9 @@ class FragmentSaveStatus : Fragment() {
                             // granted then fetch status
                             //get permission
                             // fetch status
-                            val isPermissionGranted = SharedPrefUtils.getPrefBoolean(SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_BUSINESS_PERMISSION_GRANTED , false)
+                            val isPermissionGranted = SharedPrefUtils.
+                            getPrefBoolean(SharedPrefUtils.
+                            SharedPrefKeys.PREF_KEY_WP_BUSINESS_PERMISSION_GRANTED , false)
                             if (isPermissionGranted){
                                 getWhatsAppBusinessStatus()
                             }
@@ -59,34 +63,21 @@ class FragmentSaveStatus : Fragment() {
                                 initialUri = Constants.getWhatsappBusinessUri()
                             )
                         }
-                        val viewPagerAdapter = MediaViewPagerAdapter(requireActivity() , imageType = Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_IMAGES , videoType = Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_VIDEOS)
+                        val viewPagerAdapter = MediaViewPagerAdapter(requireActivity() ,
+                            imageType = Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_IMAGES ,
+                            videoType = Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_VIDEOS)
                         statusViewPager.adapter = viewPagerAdapter
                         TabLayoutMediator(tabLayout, statusViewPager){tab , pos->
                             tab.text = viewPagerTitle[pos]
                         }.attach()
                     }
-
-//                    Constants.TYPE_WHATSAPP_MAIN -> {
-//                            // permission check
-//                            // granted then fetch status
-//                            //get permission
-//                            // fetch status
-//
-//                        permissionLayout.butPermission.setOnClickListener {
-//                            getFolderPermissions(
-//                                context = requireActivity(),
-//                                REQUEST_CODE = WHATSAPP_REQUEST_CODE,
-//                                initialUri = Constants.getWhatsappUri()
-//                            )
-//                        }
-//                    }
                 }
             }
         }
     }
 
 
-    fun getWhatsAppBusinessStatus() {
+    private fun getWhatsAppBusinessStatus() {
         binding.permissionLayoutHolder.visibility = View.GONE
         viewModel.getWhatsAppBusinessStatus()
 
@@ -97,7 +88,7 @@ class FragmentSaveStatus : Fragment() {
         savedInstanceState: Bundle?
     ) = binding.root
 
-    @Deprecated("Deprecated in Java")
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == AppCompatActivity.RESULT_OK) {
@@ -115,7 +106,7 @@ class FragmentSaveStatus : Fragment() {
                     SharedPrefUtils.SharedPrefKeys.PREF_KEY_WP_BUSINESS_PERMISSION_GRANTED,
                     true
                 )
-                getWhatsAppBusinessStatus()
+              getWhatsAppBusinessStatus()
             }
         }
     }

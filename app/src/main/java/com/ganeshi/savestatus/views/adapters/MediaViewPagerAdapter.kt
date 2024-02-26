@@ -8,8 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ganeshi.savestatus.views.fragments.FragmentMedia
 
 class MediaViewPagerAdapter(private val fragmentActivity: FragmentActivity,
-    private val imageType:String = com.ganeshi.savestatus.utils.Constants.MEDIA_TYPE_WHATSAPP_IMAGES,
-    private val videoType:String = com.ganeshi.savestatus.utils.Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_VIDEOS): FragmentStateAdapter(fragmentActivity) {
+    private val imageType:String = com.ganeshi.savestatus.utils.Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_IMAGES,
+    private val videoType:String = com.ganeshi.savestatus.utils.Constants.MEDIA_TYPE_WHATSAPP_BUSINESS_VIDEOS):
+    FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = 2
     override fun createFragment(position: Int): Fragment {
 
