@@ -39,16 +39,6 @@ class StatusRepo(val context:Context) {
         }
         treeUri?.let { uri ->
             try {
-//
-//                val collection =
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//                        MediaStore.Video.Media.getContentUri(
-//                            MediaStore.VOLUME_EXTERNAL
-//                        )
-//                    } else {
-//                        MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-//                    }
-
                 activity.contentResolver.takePersistableUriPermission(
                     treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
@@ -57,6 +47,8 @@ class StatusRepo(val context:Context) {
                 fileDocument?.listFiles()?.forEach { file ->
                     if (file.isFile && file.name != ".nomedia") {
                         val isDownload = context.isStatusExit(file.name!!)
+                        Log.d("Status REPO" , "get all status:Extension: ${getFileExtension(file.name!!)} ||${file.name!!}" )
+
                         val type = if (getFileExtension(file.name!!) == "mp4") {
                             MEDIA_TYPE_VIDEO
                         } else {
@@ -68,9 +60,6 @@ class StatusRepo(val context:Context) {
                             type = type,
                             isDownloaded = isDownload
                         )
-                        Log.d("file", file.toString())
-
-
                         wpBusinessStatusList.add(model)
                         Log.d("modelList" , model.toString())
                     }
@@ -78,42 +67,8 @@ class StatusRepo(val context:Context) {
                 whatsAppBusinessStatusesLiveData.postValue(wpBusinessStatusList)
             } catch (e: SecurityException) {
                 e.printStackTrace()
-
+                Log.d("error " , e.toString())
             }
         }
     }
 }
-
-//                fileDocument?.let {
-//                    it.listFiles().forEach { file ->
-//                        if (file.name != ".nomedia" && file.isFile) {
-//                            val isDownloaded = context.isStatusExit(file.name!!)
-//                            val type = if (getFileExtension(file.name!!) == "mp4") {
-//                                MEDIA_TYPE_VIDEO
-//                            } else {
-//                                MEDIA_TYPE_IMAGE
-//                            }
-//                            val model = MediaModel(
-//                                pathUri = file.uri.toString(),
-//                                fileName = file.name!!,
-//                                type = type,
-//                                isDownloaded = isDownloaded
-//                            )
-//                            when (whatsAppType) {
-//                                Constants.TYPE_WHATSAPP_BUSINESS -> {
-//                                    wpBusinessStatusList.add(model)
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                    when (whatsAppType) {
-//                        Constants.TYPE_WHATSAPP_BUSINESS -> {
-//                            whatsAppBusinessStatusesLiveData.postValue(wpBusinessStatusList)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-

@@ -27,11 +27,17 @@ object Constants {
     val WHATSAPP_PATH_URI_ANDROID_11 =
         Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
 
+//    val WHATSAPP_BUSINESS_PATH_URI_ANDROID =
+//        Uri.parse("content://com.android.externalstorage.documents/document/primary%3AWhatsApp%2FMedia%2F.Statuses")
+//
+//    val WHATSAPP_BUSINESS_PATH_URI_ANDROID_11 =
+//        Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fmedia%2Fcom.whatsapp%2FWhatsApp%2FMedia%2F.Statuses")
+
     val WHATSAPP_BUSINESS_PATH_URI_ANDROID =
-        Uri.parse(
-            "content://com.android.externalstorage.documents/document/primary%3AWhatsApp%20Business%2FMedia%2F.Statuses")
+        Uri.parse("content://com.android.externalstorage.documents/document/primary%3AWhatsApp%20Business%2FMedia%2F.Statuses")
     val WHATSAPP_BUSINESS_PATH_URI_ANDROID_11 =
         Uri.parse("content://com.android.externalstorage.documents/document/primary%3AAndroid%2Fmedia%2Fcom.whatsapp.w4b%2FWhatsApp%20Business%2FMedia%2F.Statuses")
+
 
 //    fun getWhatsappUri(): Uri {
 //        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -49,3 +55,5 @@ object Constants {
         }
     }
 }
+
+
