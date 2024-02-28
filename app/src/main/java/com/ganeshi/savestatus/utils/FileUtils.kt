@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import androidx.core.net.toUri
 import com.ganeshi.savestatus.R
 import com.ganeshi.savestatus.models.MediaModel
@@ -28,6 +29,7 @@ fun Context.saveStatus(model:MediaModel):Boolean{
     if (isStatusExit(model.fileName)){
         return true
     }
+
     val extension = getFileExtension(model.fileName)
     val mimeType = "${model.type} $extension"
     val inputStream = contentResolver.openInputStream(model.pathUri.toUri())
@@ -41,9 +43,9 @@ fun Context.saveStatus(model:MediaModel):Boolean{
                 Environment.DIRECTORY_DOCUMENTS + "/" + getString(R.string.app_name)
             )
         }
-            val uri = contentResolver.insert(
-                MediaStore.Files.getContentUri("external") , values
-            )
+        val uri = contentResolver.insert(
+            MediaStore.Files.getContentUri("external") , values
+        )
         uri?.let {
             val outputStream = contentResolver.openOutputStream(it)
             if (inputStream != null){
@@ -55,6 +57,7 @@ fun Context.saveStatus(model:MediaModel):Boolean{
         }
     }catch (e: Exception){
         e.printStackTrace()
+        Log.d("Error" , "catch error ${e.toString()}")
     }
     return  false
 }
