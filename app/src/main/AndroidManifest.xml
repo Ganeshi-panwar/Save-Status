@@ -19,16 +19,12 @@
         <activity
                 android:name=".views.activities.VideosPreview"
                 android:exported="true" />
-
-
         <activity
             android:name=".views.activities.ImagePreview"
             android:exported="true" />
-
         <activity
             android:name=".views.activities.SavePreview"
             android:exported="true" />
-
 
         <activity
             android:name=".views.activities.MainActivity"

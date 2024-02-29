@@ -1,6 +1,7 @@
 package com.ganeshi.savestatus.views.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,9 @@ import com.ganeshi.savestatus.R
 import com.ganeshi.savestatus.databinding.ItemMediaBinding
 import com.ganeshi.savestatus.models.MEDIA_TYPE_IMAGE
 import com.ganeshi.savestatus.models.MediaModel
+import com.ganeshi.savestatus.utils.Constants
 import com.ganeshi.savestatus.utils.saveStatus
+import com.ganeshi.savestatus.views.activities.ImagePreview
 
 class MediaAdapter(private val list:ArrayList<MediaModel>, val context:Context):
     RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
@@ -38,6 +41,12 @@ class MediaAdapter(private val list:ArrayList<MediaModel>, val context:Context):
                 cardStatus.setOnClickListener{
                     if(mediaModel.type == MEDIA_TYPE_IMAGE){
                         // goto image preview activity
+                        Intent().apply {
+                            putExtra(Constants.MEDIA_LIST_KEY , list)
+                            putExtra(Constants.MEDIA_SCROLL_KEY , layoutPosition)
+                            setClass(context , ImagePreview::class.java)
+                            context.startActivity(this)
+                        }
 
                     }
                     else{
